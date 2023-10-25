@@ -1,0 +1,37 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="site.leui.todoserver.repository.TodoMapper">
+    <resultMap id="todoResultMap" type="site.leui.todoserver.domain.Todo">
+        <result property="createdTime" column="created_time"/>
+        <result property="modifiedTime" column="modified_time"/>
+        <result property="dueDate" column="due_date"/>
+    </resultMap>
+    <select id="findAll" resultType="site.leui.todoserver.domain.Todo" resultMap="todoResultMap">
+        SELECT * FROM todo
+    </select>
+
+    <select id="findOne" resultType="site.leui.todoserver.domain.Todo" resultMap="todoResultMap">
+        SELECT *
+        FROM todo
+        WHERE id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="site.leui.todoserver.dto.TodoForSave" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO todo
+        (title, status, created_time, modified_time, due_date) VALUES
+        (#{title}, #{status}, #{createdTime}, null, #{dueDate});
+    </insert>
+
+    <update id="update" parameterType="site.leui.todoserver.dto.TodoForEdit">
+        UPDATE todo
+        SET title = #{title}, due_date = #{dueDate}, modified_time = #{modifiedTime}, status = #{status}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete">
+        DELETE
+        FROM todo
+        WHERE id = #{id}
+    </delete>
+</mapper>

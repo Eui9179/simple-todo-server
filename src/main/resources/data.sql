@@ -1,0 +1,10 @@
+DROP TABLE IF EXISTS TODO;
+
+CREATE TABLE TODO (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(30) NOT NULL,
+    due_date DATE NOT NULL,
+    status VARCHAR(20) NOT NULL,
+    created_time DATE NOT NULL,
+    modified_time DATE
+);
