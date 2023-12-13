@@ -1,8 +1,6 @@
 package site.leui.todoserver.repository;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.SelectKey;
 import site.leui.todoserver.domain.Todo;
 import site.leui.todoserver.dto.TodoForEdit;
 import site.leui.todoserver.dto.TodoForSave;
