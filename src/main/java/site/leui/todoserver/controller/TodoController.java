@@ -22,6 +22,11 @@ public class TodoController {
         return todoService.getAll();
     }
 
+    @GetMapping("/todo/{id}")
+    public Todo getTodo(@PathVariable Long id) {
+        return todoService.get(id);
+    }
+
     @PostMapping("/todo")
     public Long createTodo(@RequestBody TodoForSave saveTodo) {
         return todoService.save(saveTodo);
