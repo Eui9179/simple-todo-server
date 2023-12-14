@@ -1,9 +1,12 @@
 package site.leui.todoserver.service;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import site.leui.todoserver.domain.Todo;
 import site.leui.todoserver.dto.TodoForSave;
 import site.leui.todoserver.repository.TodoMapper;
@@ -11,17 +14,17 @@ import site.leui.todoserver.repository.TodoMapper;
 import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.AdditionalAnswers.returnsFirstArg;
 import static org.mockito.ArgumentMatchers.any;
 
+@ExtendWith(SpringExtension.class)
+@Import({TodoService.class})
 public class TodoServiceTest {
-    private final TodoMapper todoRepository = Mockito.mock(TodoMapper.class);
-    private TodoService todoService;
 
-    @BeforeEach
-    public void setUpTest() {
-        todoService = new TodoService(todoRepository);
-    }
+    @MockBean
+    private TodoMapper todoRepository;
+
+    @Autowired
+    private TodoService todoService;
 
     @Test
     void getTodoTest() {
