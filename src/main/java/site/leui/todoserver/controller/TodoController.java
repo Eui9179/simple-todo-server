@@ -1,5 +1,6 @@
 package site.leui.todoserver.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import site.leui.todoserver.dto.TodoForEdit;
@@ -28,17 +29,17 @@ public class TodoController {
     }
 
     @PostMapping("/todo")
-    public Long createTodo(@RequestBody TodoForSave saveTodo) {
+    public Long createTodo(@Valid @RequestBody TodoForSave saveTodo) {
         return todoService.save(saveTodo);
     }
 
     @PutMapping("/todo")
-    public void editTodo(@RequestBody TodoForEdit editTodo) {
+    public void editTodo(@Valid @RequestBody TodoForEdit editTodo) {
         todoService.edit(editTodo);
     }
 
     @PutMapping("/todo-status")
-    public void updateTodoStatus(@RequestBody TodoStatusForUpdate request) {
+    public void updateTodoStatus(@Valid @RequestBody TodoStatusForUpdate request) {
         todoService.updateTodoStatus(request);
     }
 
